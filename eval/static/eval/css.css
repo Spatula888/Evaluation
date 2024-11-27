@@ -1,0 +1,114 @@
+/* Navbar background and text color */
+.navbar-laravel {
+    padding: 0.25rem 0.95rem;
+    margin-bottom: 2px;
+    background-color: #3498db; /* Basic blue */
+    border-bottom: 3px solid #2c3e50; /* Darker shade for the border */
+}
+
+/* Navbar link styles */
+.navbar-nav .nav-item .nav-link {
+    text-align: left;
+    padding-left: 10px;
+    color: #ffffff; /* White text */
+}
+
+/* Specific adjustment for Student Login link */
+.navbar-nav .nav-item .nav-link[href="{% url 'login' %}"] {
+    padding-left: 5px; /* Adjust the padding to move the text */
+    text-align: left;
+}
+
+/* Hover state for nav links */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #f1c40f; /* Yellow on hover */
+}
+
+/* Active link state */
+.navbar-nav .nav-item.active .nav-link {
+    font-weight: bold;
+    color: #e74c3c; /* Red for active link */
+}
+
+/* Button design */
+.btn-design {
+    background-color: #1abc9c; /* Greenish color */
+    color: #ffffff; /* White text */
+}
+
+/* Modal header background */
+.modal-header {
+    background-color: #e67e22; /* Orange */
+    border-bottom: 1px solid #d35400; /* Darker orange for the border */
+}
+
+/* Table header colors */
+.th-color {
+    background-color: #2980b9; /* Blue */
+}
+
+.th-color2 {
+    background-color: #bdc3c7; /* Light gray */
+}
+
+/* Table cell background */
+.td-color {
+    background-color: rgba(255, 205, 0, .15); /* Yellow tint */
+}
+
+/* Input field styles */
+.form-control {
+    border: 1px solid #3498db; /* Blue border */
+    border-radius: 0.25rem; /* Slightly rounded corners */
+}
+
+.form-control:focus {
+    border-color: #1abc9c; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5); /* Add glow effect */
+}
+
+/* Input group text color */
+.input-group-text {
+    background-color: #16a085; /* Greenish-blue */
+    color: #ffffff; /* White text */
+}
+
+/* Header for login card */
+.card-header {
+    background-color: #3498db; /* Same blue as navbar */
+    color: #ffffff; /* White text */
+}
+
+/* Card styles for the login form */
+.card {
+    border: 1px solid #2c3e50; /* Dark border for the card */
+    border-radius: 0.5rem; /* Rounded corners for the card */
+}
+
+/* Additional styles for the login form */
+.card-body {
+    background-color: #ecf0f1; /* Light gray for the body */
+}
+
+/* Form button styles */
+.btn-login {
+    background-color: #3498db; /* Blue button */
+    color: #ffffff; /* White text */
+    border: none; /* Remove border */
+    padding: 10px 15px; /* Padding for button */
+    border-radius: 0.25rem; /* Rounded corners */
+}
+
+.btn-login:hover {
+    background-color: #1abc9c; /* Change to greenish color on hover */
+}
+
+/* Alternate row background color for tables */
+.alternate:nth-child(even) {
+    background-color: #ecf0f1; /* Light gray for even rows */
+}
+
+.alternate:nth-child(odd) {
+    background-color: rgba(85, 224, 69, 0.12); /* Light green for odd rows */
+}
+

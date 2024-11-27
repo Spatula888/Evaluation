@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation List | CCDI Faculty Evaluation System</title>
+    <link rel="icon" type="image/png" href="{% static 'eval/favicon.svg' %}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'eval/sty.css' %}">
+    <link rel="stylesheet" href="{% static 'eval/css.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-laravel">
+        <div class="container">
+            <a class="navbar-brand text-light" href="">
+                <img src="{% static 'eval/ccdi.png' %}" alt="" width="32px" height="32px">
+                CCDI Faculty Evaluation System
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color: white;">≡</span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Evaluation List</h1>
+        
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Evaluator</th>
+                    <th scope="col">Evaluated</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for evaluation in evaluations %}
+                <tr>
+                    <td>{{ evaluation.id }}</td>
+                    <td>{{ evaluation.evaluator }}</td>
+                    <td>{{ evaluation.evaluated }}</td>
+                    <td>{{ evaluation.date }}</td>
+                    <td>{{ evaluation.status }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No evaluations found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://faculty-evaluation.CCDI.edu.ph/js/jquery.min.js"></script>
+    <script src="https://faculty-evaluation.CCDI.edu.ph/js/bootstrap.min.js"></script>
+</body>
+</html>

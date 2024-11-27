@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Student Dashboard - CCDI Faculty Evaluation System</title>
+    <link rel="icon" type="image/png" href="{% static 'eval/ccdi.png' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'eval/dashboard.css' %}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'eval/ccdi.png' %}" width="30" height="30" alt="CCDI Logo">
+                CCDI Faculty Evaluation System
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="mt-5">
+            <h2>Welcome, {{ student_name }}</h2>
+            <h4>Evaluate Your Teachers for the Current Semester</h4>
+
+            <!-- Semester Selection -->
+            <form method="GET" action="{% url 'student_dashboard' %}">
+                <div class="form-group">
+                    <label for="semester">Select Semester:</label>
+                    <select id="semester" name="semester" class="form-control" required>
+                        <option value="" disabled selected>Select a semester</option>
+                        <option value="1">1st Semester</option>
+                        <option value="2">2nd Semester</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Show Subjects</button>
+            </form>
+
+            {% if subjects %}
+            <h5 class="mt-4">Subjects for {{ selected_semester }} Semester</h5>
+
+            <!-- List of Subjects with Evaluation Links -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Instructor</th>
+                        <th>Evaluate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for subject in subjects %}
+                    <tr>
+                        <td>{{ subject.name }}</td>
+                        <td>{{ subject.instructor }}</td>
+                        <td>
+                            <a href="{% url 'evaluate_teacher' subject.id %}" class="btn btn-success">
+                                Evaluate
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-danger">No subjects found for the selected semester.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

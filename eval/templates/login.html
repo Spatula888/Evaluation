@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>CCDI Faculty Evaluation System</title>
+
+    <link rel="icon" type="image/png" href="{% static 'eval/ccdi.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet">
+    <link href="{% static 'eval/sty.css' %}" rel="stylesheet">
+    <link href="{% static 'eval/css.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-laravel">
+            <div class="container">
+                <a class="navbar-brand text-light" href="">
+                    <img src="{% static 'eval/ccdi.png' %}" alt="" width="32" height="32">
+                    CCDI Faculty Evaluation System
+                </a>
+            </div>
+        </nav>
+
+        <main class="py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 pt-5">
+                        <div class="card">
+                            <div class="card-header myheader-admin text-light">Login</div>
+                            <div class="card-body">
+                                {% if messages %}
+                                    <div class="alert alert-danger">
+                                        {% for message in messages %}
+                                            <p>{{ message }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <form method="POST" action="{% url 'login' %}">
+                                    {% csrf_token %}
+                                    
+                                    <div class="form-group">
+                                        <label for="role">Login As</label>
+                                        <select id="role" name="role" class="form-control" required>
+                                            <option value="" disabled selected>Select Role</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="student">Student</option>
+                                            <option value="faculty">Faculty</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input id="password" type="password" class="form-control" name="password" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                                            <label class="form-check-label" for="remember">Remember Me</label>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                </form>
+                                <div class="text-center mt-3">
+                                    <p>Don't have an account? <a href="{% url 'register' %}" class="text-primary">Register here</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

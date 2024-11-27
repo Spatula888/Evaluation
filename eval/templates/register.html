@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register | CCDI Faculty Evaluation System</title>
+    <link rel="icon" type="image/png" href="{% static 'eval/ccdi.png' %}">
+    <link href="{% static 'eval/sty.css' %}" rel="stylesheet">
+    <link href="{% static 'eval/css.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-laravel">
+            <div class="container">
+                <a class="navbar-brand text-light" href="#">
+                    <img src="{% static 'eval/ccdi.png' %}" alt="CCDI Logo" width="32px" height="32px">
+                    CCDI Faculty Evaluation System
+                </a>
+            </div>
+        </nav>
+
+        <main class="py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 pt-5">
+                        <div class="card">
+                            <div class="card-header myheader-admin text-light">Register</div>
+                            <div class="card-body">
+                                <form method="POST">
+                                    {% csrf_token %}
+        
+                                    <!-- Role Selection -->
+                                    <label for="role">Role:</label>
+                                    <select name="role" id="role" onchange="showForm()" required>
+                                        <option value="">--Select Role--</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="student">Student</option>
+                                        <option value="faculty">Faculty</option>
+                                    </select><br>
+
+                                    <!-- Common Fields for All -->
+                                    <label for="name">Name:</label>
+                                    <input type="text" name="name" required><br>
+
+                                    <!-- Admin Form Fields -->
+                                    <div id="admin-fields" style="display:none;">
+                                        <p>Admin registration form. No additional fields required.</p>
+                                    </div>
+
+                                    <!-- Student Form Fields -->
+                                    <div id="student-fields" style="display:none;">
+                                        <label for="year_level">Year Level:</label>
+                                        <input type="text" name="year_level" placeholder="For students"><br>
+                                    </div>
+
+                                    <!-- Faculty Form Fields -->
+                                    <div id="faculty-fields" style="display:none;">
+                                        <label for="department">Department:</label>
+                                        <input type="text" name="department" placeholder="For faculty"><br>
+                                    </div>
+
+                                    <!-- Password Fields (Common for All) -->
+                                    <label for="password">Password:</label>
+                                    <input type="password" name="password" required><br>
+
+                                    <label for="password_confirm">Confirm Password:</label>
+                                    <input type="password" name="password_confirm" required><br>
+
+                                    <button type="submit">Register</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            function showForm() {
+                var role = document.getElementById('role').value;
+                
+                // Hide all forms initially
+                document.getElementById('admin-fields').style.display = 'none';
+                document.getElementById('student-fields').style.display = 'none';
+                document.getElementById('faculty-fields').style.display = 'none';
+        
+                // Show relevant form based on selected role
+                if (role === 'admin') {
+                    document.getElementById('admin-fields').style.display = 'block';
+                } else if (role === 'student') {
+                    document.getElementById('student-fields').style.display = 'block';
+                } else if (role === 'faculty') {
+                    document.getElementById('faculty-fields').style.display = 'block';
+                }
+            }
+        </script>
+
+        <div class="text-center mt-3">
+            <p>Already have an account? <a href="{% url 'login' %}" class="text-primary">Login here</a></p>
+        </div>
+    </div>
+</body>
+</html>
